@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiki – Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1D1921;
+      background: #FAF8F5;
+      line-height: 1.75;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 48px 44px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; margin-bottom: 4px; font-weight: 400; }
+    .updated { font-size: 13px; color: #A39BB0; margin-bottom: 28px; }
+    h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; margin: 32px 0 8px; color: #1D1921; font-weight: 400; }
+    p, li { font-size: 15px; color: #6B6275; }
+    p { margin-bottom: 12px; }
+    ul { margin: 8px 0 12px 24px; }
+    li { margin-bottom: 4px; }
+    a { color: #8B7EC8; }
+    .highlight { background: rgba(139, 126, 200, 0.05); border-left: 3px solid #8B7EC8; padding: 12px 16px; border-radius: 8px; margin: 12px 0; }
+    .highlight p { margin-bottom: 0; }
+    .summary { background: rgba(78, 205, 196, 0.06); border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }
+    .summary p { margin-bottom: 8px; }
+    .summary p:last-child { margin-bottom: 0; }
+    .summary strong { color: #1D1921; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #EDE9E3; color: #6B6275; }
+    th { color: #1D1921; font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    code { background: #F3F0EB; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective date: March 22, 2026 &middot; Last updated: March 22, 2026</p>
+
+    <p>Kiki is a voice-controlled browser assistant distributed as a Chrome extension. This policy explains what data Kiki accesses, how it is processed, and what leaves your device.</p>
+
+    <div class="summary">
+      <p><strong>The short version:</strong></p>
+      <p>Wake word detection runs entirely on your device. Voice audio is transcribed in real time and immediately discarded. Page snapshots exist only during a command and are never stored. The only data we collect is anonymous usage signals like "a click succeeded" — never what you clicked, what you said, or which page you were on.</p>
+    </div>
+
+    <h2>Who we are</h2>
+    <p>Kiki is developed and maintained by Han Lee. For privacy questions, contact <a href="mailto:hanlee4g@gmail.com">hanlee4g@gmail.com</a> or open an issue on the <a href="https://github.com/hanlee4g/co-browser">project's GitHub repository</a>.</p>
+
+    <h2>1. Wake word detection is local</h2>
+    <p>The wake word "Kiki" is detected entirely in your browser using a local machine-learning model (ONNX Runtime WebAssembly). No audio leaves your device until you actively give a voice command. The model runs in a sandboxed offscreen document within the extension — there is no server round-trip for wake word detection.</p>
+
+    <h2>2. Voice commands are processed and discarded</h2>
+    <p>When you give a voice command, audio is streamed to the Kiki server, which proxies it to <a href="https://deepgram.com">Deepgram</a> for speech-to-text transcription. The resulting text is forwarded to an AI model for action planning. <strong>Neither the audio nor the transcript is stored</strong> — they exist only for the duration of the request and are discarded immediately after processing.</p>
+    <p>The server forwards voice transcripts and page context to one of the following AI providers, depending on configuration:</p>
+    <ul>
+      <li><strong>Google Gemini</strong> (default) — <a href="https://ai.google.dev/gemini-api/terms">API Terms of Service</a></li>
+      <li><strong>Anthropic Claude</strong> — <a href="https://www.anthropic.com/privacy">Privacy Policy</a></li>
+      <li><strong>OpenAI</strong> — <a href="https://openai.com/privacy">Privacy Policy</a></li>
+    </ul>
+    <p>No direct communication occurs between the extension and these AI services. All data flows through the Kiki server middleware, which acts as a stateless proxy. Data sent to third-party providers is governed by their respective policies linked above.</p>
+
+    <h2>3. Page snapshots are temporary</h2>
+    <p>To understand what is on your screen, Kiki reads interactive elements on the current page (buttons, links, form fields, headings) and creates a structured accessibility snapshot. This snapshot:</p>
+    <ul>
+      <li>Exists only in memory for the duration of your command</li>
+      <li>Is never written to disk, logged, or persisted on the server</li>
+      <li>Contains element labels and roles — not sensitive page content such as passwords or personal data displayed on screen</li>
+    </ul>
+
+    <h2>4. Anonymous telemetry</h2>
+    <div class="highlight">
+      <p>Kiki collects anonymous structural telemetry to help identify and fix broken functionality. We see <em>that</em> something worked or did not — never <em>what</em> you clicked, <em>what</em> you said, or <em>what page</em> you were on.</p>
+    </div>
+    <p>The following events are collected:</p>
+    <table>
+      <tr><th>Event</th><th>Data included</th></tr>
+      <tr><td>Extension installed</td><td>None</td></tr>
+      <tr><td>Session started</td><td>None</td></tr>
+      <tr><td>Command issued</td><td>Action type (e.g. "click", "scroll")</td></tr>
+      <tr><td>Command succeeded / failed</td><td>Action type, error category (if failed)</td></tr>
+      <tr><td>Session ended</td><td>Total command count</td></tr>
+    </table>
+    <p>Each installation generates a random anonymous ID (UUID) stored locally. This ID is not linked to your identity in any way. No personal information, URLs, page content, or command transcripts are included in telemetry events.</p>
+
+    <h2>5. Voluntary feedback</h2>
+    <p>The chat panel includes an optional feedback button. When you choose to send feedback, the following data from recent command sessions may be included:</p>
+    <ul>
+      <li>Task descriptions (what you asked Kiki to do)</li>
+      <li>Action types and outcomes (e.g. "click succeeded")</li>
+      <li>The starting URL of the session</li>
+      <li>An optional note you write</li>
+    </ul>
+    <p>You see exactly which sessions will be included before sending and can deselect any you do not want to share. Feedback submission is entirely opt-in and voluntary.</p>
+
+    <h2>6. Data stored on your device</h2>
+    <p>The extension stores the following locally via <code>chrome.storage.local</code>. None of this data is synced to the cloud or shared with third parties:</p>
+    <ul>
+      <li>Server URL configuration</li>
+      <li>Keyboard shortcut preference</li>
+      <li>Chat theme preference (dark / light)</li>
+      <li>Anonymous telemetry client ID (random UUID)</li>
+      <li>Recent command history (up to 50 sessions, for the voluntary feedback feature)</li>
+      <li>Onboarding completion status</li>
+    </ul>
+
+    <h2>7. Data retention</h2>
+    <ul>
+      <li><strong>Audio and transcripts:</strong> Zero retention. Processed in real time and discarded immediately.</li>
+      <li><strong>Page snapshots:</strong> Zero retention. Held in memory only during command execution.</li>
+      <li><strong>Telemetry events:</strong> Retained on the server in aggregated, anonymous form. Individual events cannot be linked to a person.</li>
+      <li><strong>Voluntary feedback:</strong> Retained for debugging purposes. May be deleted upon request.</li>
+      <li><strong>Local data:</strong> Persists on your device until you uninstall the extension or clear extension data.</li>
+    </ul>
+
+    <h2>8. Data security</h2>
+    <ul>
+      <li>All communication between the extension and the Kiki server uses HTTPS (TLS encryption in transit).</li>
+      <li>API keys for third-party services (Deepgram, AI providers) are stored server-side only — never in the extension code or on your device.</li>
+      <li>The server runs on Google Cloud Run with automatic scaling and isolation.</li>
+      <li>The extension does not use cookies, local storage (browser <code>localStorage</code>), or any cross-site tracking mechanisms.</li>
+    </ul>
+
+    <h2>9. Permissions</h2>
+    <p>The extension requests these Chrome permissions:</p>
+    <table>
+      <tr><th>Permission</th><th>Why it is needed</th></tr>
+      <tr><td><code>offscreen</code></td><td>Run wake word detection and audio capture in a background document (required because MV3 service workers cannot access <code>getUserMedia</code>).</td></tr>
+      <tr><td><code>storage</code></td><td>Save your preferences (server URL, hotkey, theme) locally on your device.</td></tr>
+      <tr><td><code>activeTab</code> / <code>tabs</code></td><td>Read the current page for accessibility snapshots and support multi-tab voice commands ("open a new tab", "switch to Gmail").</td></tr>
+      <tr><td><code>webNavigation</code></td><td>Detect when page navigation completes so Kiki can continue multi-step tasks after a page change.</td></tr>
+      <tr><td>Host permissions (all URLs)</td><td>Inject content scripts on any website so voice commands work immediately without requiring a click on the extension icon first. No page data is exfiltrated.</td></tr>
+    </table>
+
+    <h2>10. Children's privacy</h2>
+    <p>Kiki is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information through the extension, please contact us and we will delete it promptly.</p>
+
+    <h2>11. International data transfers</h2>
+    <p>The Kiki server is hosted on Google Cloud in the United States (us-west1 region). Audio, transcripts, and page snapshots may be processed in the United States during command execution. Third-party AI providers may process data in additional jurisdictions as described in their own privacy policies.</p>
+
+    <h2>12. Your rights</h2>
+    <ul>
+      <li><strong>Delete local data:</strong> Uninstall the extension or go to <code>chrome://extensions</code>, click "Details" on Kiki, and select "Clear data." This removes all locally stored preferences, command history, and the anonymous telemetry ID.</li>
+      <li><strong>Delete server-side data:</strong> Because telemetry uses a random UUID with no link to your identity, server-side telemetry records cannot be associated with you after you clear local data. If you submitted voluntary feedback and want it removed, contact us with the approximate date and we will delete it.</li>
+      <li><strong>Opt-out of telemetry:</strong> Telemetry is currently on by default during beta. A toggle to disable it will be available in a future release.</li>
+    </ul>
+
+    <h2>13. Changes to this policy</h2>
+    <p>If we make material changes to this policy, we will update the "Last updated" date at the top and, for significant changes, include a notice in the extension's update notes on the Chrome Web Store. Continued use of the extension after changes constitutes acceptance of the revised policy.</p>
+
+    <h2>14. Contact</h2>
+    <p>For privacy questions, data requests, or concerns:</p>
+    <ul>
+      <li>Email: <a href="mailto:hanlee4g@gmail.com">hanlee4g@gmail.com</a></li>
+      <li>GitHub: <a href="https://github.com/hanlee4g/co-browser/issues">Open an issue</a></li>
+    </ul>
+  </div>
+</body>
+</html>
