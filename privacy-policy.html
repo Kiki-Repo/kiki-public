@@ -47,7 +47,7 @@
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective date: March 22, 2026 &middot; Last updated: March 22, 2026</p>
+    <p class="updated">Effective date: March 22, 2026 &middot; Last updated: March 25, 2026</p>
 
     <p>Kiki is a voice-controlled browser assistant distributed as a Chrome extension. This policy explains what data Kiki accesses, how it is processed, and what leaves your device.</p>
 
@@ -92,6 +92,8 @@
       <tr><td>Command issued</td><td>Action type (e.g. "click", "scroll")</td></tr>
       <tr><td>Command succeeded / failed</td><td>Action type, error category (if failed)</td></tr>
       <tr><td>Session ended</td><td>Total command count</td></tr>
+      <tr><td>Onboarding phase completed</td><td>Phase name (e.g. "mic", "demos")</td></tr>
+      <tr><td>Challenge completed</td><td>Challenge number</td></tr>
     </table>
     <p>Each installation generates a random anonymous ID (UUID) stored locally. This ID is not linked to your identity in any way. No personal information, URLs, page content, or command transcripts are included in telemetry events.</p>
 
@@ -139,7 +141,7 @@
       <tr><th>Permission</th><th>Why it is needed</th></tr>
       <tr><td><code>offscreen</code></td><td>Run wake word detection and audio capture in a background document (required because MV3 service workers cannot access <code>getUserMedia</code>).</td></tr>
       <tr><td><code>storage</code></td><td>Save your preferences (server URL, hotkey, theme) locally on your device.</td></tr>
-      <tr><td><code>activeTab</code> / <code>tabs</code></td><td>Read the current page for accessibility snapshots and support multi-tab voice commands ("open a new tab", "switch to Gmail").</td></tr>
+      <tr><td><code>tabs</code></td><td>Read the current page for accessibility snapshots and support multi-tab voice commands ("open a new tab", "switch to Gmail").</td></tr>
       <tr><td><code>webNavigation</code></td><td>Detect when page navigation completes so Kiki can continue multi-step tasks after a page change.</td></tr>
       <tr><td>Host permissions (all URLs)</td><td>Inject content scripts on any website so voice commands work immediately without requiring a click on the extension icon first. No page data is exfiltrated.</td></tr>
     </table>
